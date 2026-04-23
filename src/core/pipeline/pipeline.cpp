@@ -13,7 +13,7 @@ void Pipeline::run() {
 
     Frame frame;
     while (m_reader->read(frame)) {
-        m_reader->display();
+        //m_reader->display();
         for (auto& p: m_processors) {
             p->process(frame);
         }
