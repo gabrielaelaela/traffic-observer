@@ -12,10 +12,12 @@ void Pipeline::run() {
     if (!m_reader || !m_reader->start()) return;
 
     Frame frame;
+    DisplayOutput displayOutput;
     while (m_reader->read(frame)) {
-        //m_reader->display();
         for (auto& p: m_processors) {
             p->process(frame);
         }
+        displayOutput.send(frame);
     }
+    displayOutput.send(frame);
 }

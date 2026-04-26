@@ -5,6 +5,7 @@
 #include "services/video_ingest/ivideo_reader.h"
 #include "core/frame.h"
 #include "core/pipeline/iprocessor.h"
+#include "outputs/display/display_output.h"
 
 class Pipeline {
 public: 

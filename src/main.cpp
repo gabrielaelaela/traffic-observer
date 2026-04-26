@@ -8,6 +8,7 @@
 
 int main(int argc, char** argv) {
     if (argc < 2) {
+        std::cerr << "Error: expected path to video file as argument\n";
         return -1;
     }
 
