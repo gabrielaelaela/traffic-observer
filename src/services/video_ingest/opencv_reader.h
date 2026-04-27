@@ -12,7 +12,6 @@ public:
 
     bool start() override;
     bool read(Frame& frame) override;
-    bool display() override;
     void stop() override;
 
     ~OpenCVReader() override;

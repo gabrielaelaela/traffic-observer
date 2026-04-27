@@ -34,23 +34,6 @@ bool OpenCVReader::read(Frame& frame) {
     return m_ret;
 }
 
-bool OpenCVReader::display() {
-    if(!m_cap.isOpened()) {
-        Logger::write_log(Priority::error, "The file was not opened");
-        return false;
-    }
-
-    if (m_ret) {
-        cv::imshow("First frame", m_mat);
-        cv::waitKey(10);
-        return true;
-    } else {
-        Logger::write_log(Priority::error, "Could not read the frame");
-        return false;
-    }
-    
-}
-
 void OpenCVReader::stop() {
     if(!m_cap.isOpened()) {
         return;

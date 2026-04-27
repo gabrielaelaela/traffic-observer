@@ -5,6 +5,7 @@
 #include "processors/grayscale/grayscale_processor.h"
 #include "processors/motion/motion_processor.h"
 #include "core/pipeline/pipeline.h"
+#include "outputs/display/display_output.h"
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -17,11 +18,13 @@ int main(int argc, char** argv) {
     auto cap = std::make_unique<OpenCVReader>(path);
     auto grayscale = std::make_unique<GrayscaleProcessor>();
     auto motion = std::make_unique<MotionProcessor>();
+    auto displayOutput = std::make_unique<DisplayOutput>();
 
     Pipeline pipeline;
     pipeline.setReader(std::move(cap));
     pipeline.addProcessor(std::move(grayscale));
     pipeline.addProcessor(std::move(motion));
+    pipeline.addOutput(std::move(displayOutput));
     
     pipeline.run();
 
