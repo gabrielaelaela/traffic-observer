@@ -17,11 +17,14 @@ void Pipeline::run() {
 
     Frame frame;
     while (m_reader->read(frame)) {
-        for (auto& o: m_outputs) {
-            o->send(frame);
-        }
+        frame.events.clear();
+
         for (auto& p: m_processors) {
             p->process(frame);
+        }
+
+        for (auto& o: m_outputs) {
+            o->send(frame);
         }
     }
 }

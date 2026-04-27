@@ -22,7 +22,7 @@ void MotionProcessor::process(Frame& frame) {
     }
 
     if (diff_count > frame.data.size() * 0.001) {
-        Logger::write_log(Priority::trace, "Movement detected");
+        frame.events.push_back({"Motion detected"});
     }
 
     m_prev_frame = frame.data;

@@ -16,6 +16,7 @@ add_executable(TrafficObserver
     src/processors/grayscale/grayscale_processor.cpp
     src/processors/motion/motion_processor.cpp
     src/outputs/display/display_output.cpp
+    src/outputs/logger/logger_output.cpp
 )
 
 target_include_directories(TrafficObserver PRIVATE src)

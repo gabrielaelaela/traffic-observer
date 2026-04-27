@@ -9,5 +9,6 @@ void GrayscaleProcessor::process(Frame& frame) {
 
     frame.width = grayImg.cols;
     frame.height = grayImg.rows;
+    frame.channels = 1;
     frame.data.assign(grayImg.data, grayImg.data + grayImg.total() * grayImg.elemSize());
 }
