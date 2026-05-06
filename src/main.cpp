@@ -4,7 +4,7 @@
 #include "services/video_ingest/opencv_reader.h"
 #include "processors/grayscale/grayscale_processor.h"
 #include "processors/motion/motion_processor.h"
-#include "core/pipeline/pipeline.h"
+#include "core/pipeline/threaded_pipeline.h"
 #include "outputs/display/display_output.h"
 #include "outputs/logger/logger_output.h"
 
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     auto displayOutput = std::make_unique<DisplayOutput>();
     auto loggerOutput = std::make_unique<LoggerOutput>();
 
-    Pipeline pipeline;
+    ThreadedPipeline pipeline;
     pipeline.setReader(std::move(cap));
     pipeline.addProcessor(std::move(grayscale));
     pipeline.addProcessor(std::move(motion));

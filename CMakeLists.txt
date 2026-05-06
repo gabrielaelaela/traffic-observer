@@ -11,6 +11,7 @@ find_package(Boost REQUIRED COMPONENTS log log_setup)
 add_executable(TrafficObserver 
     src/main.cpp 
     src/core/pipeline/pipeline.cpp
+    src/core/pipeline/threaded_pipeline.cpp
     src/logger/logger.cpp
     src/services/video_ingest/opencv_reader.cpp 
     src/processors/grayscale/grayscale_processor.cpp
