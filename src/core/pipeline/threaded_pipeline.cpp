@@ -26,20 +26,24 @@ void ThreadedPipeline::run() {
 }
 
 void ThreadedPipeline::read() {
-    Frame frame;
-    while (m_reader->read(frame)) {
+    while (true) {
+        auto frame = std::make_shared<Frame>();
+
+        if (!m_reader->read(*frame)) break;
+        
         m_queueReader.push(frame);
     }
+    
     m_queueReader.stop();
 }
 
 void ThreadedPipeline::process() {
-    Frame frame;
+    std::shared_ptr<Frame> frame;
     while (m_queueReader.pop(frame)) {
-        frame.events.clear();
+        (*frame).events.clear();
 
         for (auto& p: m_processors) {
-            p->process(frame);
+            p->process(*frame);
         }
         m_queueProcessor.push(frame);
     }
@@ -47,10 +51,10 @@ void ThreadedPipeline::process() {
 }
 
 void ThreadedPipeline::output() {
-    Frame frame;
+    std::shared_ptr<Frame> frame;
     while (m_queueProcessor.pop(frame)) {
         for (auto& o: m_outputs) {
-            o->send(frame);
+            o->send(*frame);
         }
     }
 }

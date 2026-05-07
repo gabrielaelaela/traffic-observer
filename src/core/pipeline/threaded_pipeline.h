@@ -21,8 +21,8 @@ private:
     std::vector<std::unique_ptr<IProcessor>> m_processors;
     std::vector<std::unique_ptr<IOutput>> m_outputs;
 
-    ThreadSafeQueue<Frame> m_queueReader;
-    ThreadSafeQueue<Frame> m_queueProcessor;
+    ThreadSafeQueue<std::shared_ptr<Frame>> m_queueReader;
+    ThreadSafeQueue<std::shared_ptr<Frame>> m_queueProcessor;
 
     void read();
     void process();
