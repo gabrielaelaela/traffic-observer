@@ -4,7 +4,7 @@
 #include <vector>
 #include <thread>
 #include "services/video_ingest/ivideo_reader.h"
-#include "core/frame.h"
+#include "core/types/frame.h"
 #include "core/pipeline/iprocessor.h"
 #include "core/pipeline/ioutput.h"
 #include "core/utils/thread_safe_queue.h"

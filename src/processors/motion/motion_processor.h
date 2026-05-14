@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "core/frame.h"
+#include "core/types/frame.h"
 #include "core/pipeline/iprocessor.h"
 #include "logger/logger.h"
 #include <iostream>

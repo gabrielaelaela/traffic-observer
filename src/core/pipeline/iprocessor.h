@@ -1,5 +1,5 @@
 #pragma once
-#include "core/frame.h"
+#include "core/types/frame.h"
 
 class IProcessor {
 public:

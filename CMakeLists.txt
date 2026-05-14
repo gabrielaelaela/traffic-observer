@@ -16,6 +16,7 @@ add_executable(TrafficObserver
     src/services/video_ingest/opencv_reader.cpp 
     src/processors/grayscale/grayscale_processor.cpp
     src/processors/motion/motion_processor.cpp
+    src/processors/yolo/yolo_processor.cpp
     src/outputs/display/display_output.cpp
     src/outputs/logger/logger_output.cpp
 )

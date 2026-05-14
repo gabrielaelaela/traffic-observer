@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "services/video_ingest/ivideo_reader.h"
-#include "core/frame.h"
+#include "core/types/frame.h"
 #include "core/pipeline/iprocessor.h"
 #include "core/pipeline/ioutput.h"
 
