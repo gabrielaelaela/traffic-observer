@@ -6,6 +6,7 @@
 #include <vector>
 #include "core/pipeline/iprocessor.h"
 #include "logger/logger.h"
+#include "trackers/centroid/centroid_tracker.h"
 
 class YoloProcessor : public IProcessor {
 public:
@@ -16,4 +17,5 @@ public:
 private:
     cv::dnn::Net m_net;
     std::vector<std::string> m_classes;
+    CentroidTracker m_tracker;
 };

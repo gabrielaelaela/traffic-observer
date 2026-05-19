@@ -16,17 +16,17 @@ void DisplayOutput::send(const Frame& frame) {
                 d.w,
                 d.h
             ),
-            cv::Scalar(0, 255, 0),
+            cv::Scalar(0, 0, 255),
             2
         );
 
         cv::putText(
             displayMat,
-            d.label,
-            cv::Point(d.x, d.y),
+            d.label + " #" + std::to_string(d.trackId),
+            cv::Point(d.x, d.y - 5),
             cv::FONT_HERSHEY_SIMPLEX,
             0.5,
-            cv::Scalar(0, 255, 0),
+            cv::Scalar(0, 0, 255),
             1
         );
     }

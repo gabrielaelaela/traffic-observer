@@ -82,6 +82,8 @@ void YoloProcessor::process(Frame& frame) {
             confidences[idx]
         });
     }
+
+    m_tracker.update(frame.detections);
     
 }
 

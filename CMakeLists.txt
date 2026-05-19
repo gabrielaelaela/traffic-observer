@@ -17,6 +17,7 @@ add_executable(TrafficObserver
     src/processors/grayscale/grayscale_processor.cpp
     src/processors/motion/motion_processor.cpp
     src/processors/yolo/yolo_processor.cpp
+    src/trackers/centroid/centroid_tracker.cpp
     src/outputs/display/display_output.cpp
     src/outputs/logger/logger_output.cpp
 )

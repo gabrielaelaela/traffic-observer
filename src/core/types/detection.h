@@ -5,4 +5,6 @@ struct Detection {
     int x, y, w, h;
     std::string label;
     float confidence;
+
+    int trackId = -1;
 };
