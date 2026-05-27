@@ -20,6 +20,7 @@ add_executable(TrafficObserver
     src/trackers/centroid/centroid_tracker.cpp
     src/outputs/display/display_output.cpp
     src/outputs/logger/logger_output.cpp
+    src/analytics/vehicle_counter.cpp
 )
 
 target_include_directories(TrafficObserver PRIVATE src)

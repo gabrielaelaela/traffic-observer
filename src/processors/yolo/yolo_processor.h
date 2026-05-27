@@ -7,6 +7,7 @@
 #include "core/pipeline/iprocessor.h"
 #include "logger/logger.h"
 #include "trackers/centroid/centroid_tracker.h"
+#include "analytics/vehicle_counter.h"
 
 class YoloProcessor : public IProcessor {
 public:
@@ -18,4 +19,5 @@ private:
     cv::dnn::Net m_net;
     std::vector<std::string> m_classes;
     CentroidTracker m_tracker;
+    VehicleCounter m_counter{500};
 };

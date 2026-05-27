@@ -84,6 +84,6 @@ void YoloProcessor::process(Frame& frame) {
     }
 
     m_tracker.update(frame.detections);
-    
+    m_counter.checkVehicle(frame.detections);    
 }
 
