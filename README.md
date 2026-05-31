@@ -121,6 +121,7 @@ Example:
 
 ```bash
 ./TrafficObserver path/to/video.mp4
+```
 
 ## MQTT Events
 
