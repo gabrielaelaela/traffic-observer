@@ -1,6 +1,10 @@
 #include "vehicle_counter.h"
 
-VehicleCounter::VehicleCounter(int line) : m_yLine(line) {}
+VehicleCounter::VehicleCounter(int line
+                                , std::shared_ptr<MqttPublisher> publisher) 
+                                : m_yLine(line) 
+                                , m_publisher(std::move(publisher))
+                                {}
 
 void VehicleCounter::checkVehicle(const Detection& detection) {
     if (detection.label != "car" && detection.label != "truck" && detection.label != "motorbike") return;
@@ -12,11 +16,13 @@ void VehicleCounter::checkVehicle(const Detection& detection) {
 
     if ((detection.y >= m_yLine) && (m_previousY[detection.trackId] < m_yLine)) {
         if (m_passedIds.contains(detection.trackId)) return;
+
         m_passedIds.insert(detection.trackId);
         std::string log = "Another car crossed the line (#" 
                             + std::to_string(detection.trackId) 
                             + "). New count: " + std::to_string(m_passedIds.size());
         Logger::write_log(Priority::trace, log);
+        m_publisher->publish(detection.trackId, detection.label);
     }
 
     m_previousY[detection.trackId] = detection.y;

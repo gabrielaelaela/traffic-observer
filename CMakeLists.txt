@@ -8,6 +8,8 @@ find_package(OpenCV REQUIRED)
 
 find_package(Boost REQUIRED COMPONENTS log log_setup)
 
+find_package(PahoMqttCpp REQUIRED)
+
 add_executable(TrafficObserver 
     src/main.cpp 
     src/core/pipeline/pipeline.cpp
@@ -21,12 +23,16 @@ add_executable(TrafficObserver
     src/outputs/display/display_output.cpp
     src/outputs/logger/logger_output.cpp
     src/analytics/vehicle_counter.cpp
+    src/messaging/mqtt/mqtt_publisher.cpp
 )
 
 target_include_directories(TrafficObserver PRIVATE src)
 
-target_link_libraries(TrafficObserver 
-    ${OpenCV_LIBS} 
-    Boost::log 
+target_link_libraries(TrafficObserver
+    PRIVATE
+    ${OpenCV_LIBS}
+    Boost::log
     Boost::log_setup
+    paho-mqttpp3
+    paho-mqtt3as
 )

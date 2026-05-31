@@ -11,13 +11,18 @@
 
 class YoloProcessor : public IProcessor {
 public:
-    explicit YoloProcessor(const std::string& cfg, const std::string& weights, const std::string& names);
+    explicit YoloProcessor(const std::string& cfg
+                        , const std::string& weights
+                        , const std::string& names
+                        , std::shared_ptr<MqttPublisher> publisher
+    );
 
     void process(Frame& frame) override;
 
 private:
+    const int m_crossLineY = 500;
+    VehicleCounter m_counter;
     cv::dnn::Net m_net;
     std::vector<std::string> m_classes;
     CentroidTracker m_tracker;
-    VehicleCounter m_counter{500};
 };

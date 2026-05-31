@@ -17,15 +17,17 @@ int main(int argc, char** argv) {
 
     std::string path = argv[1];
 
+    auto publisher = std::make_shared<MqttPublisher>("tcp://localhost:1883", "traffic_observer", "traffic/events");
+
     auto cap = std::make_unique<OpenCVReader>(path);
     auto grayscale = std::make_unique<GrayscaleProcessor>();
     auto motion = std::make_unique<MotionProcessor>();
-    //auto yolo = std::make_unique<YoloProcessor>("../models/yolov5n.onnx");
     auto yolo = std::make_unique<YoloProcessor>(
-    "../models/yolov4-tiny.cfg",
-    "../models/yolov4-tiny.weights",
-    "../models/coco.names"
-);
+        "../models/yolov4-tiny.cfg"
+        , "../models/yolov4-tiny.weights"
+        , "../models/coco.names"
+        , publisher
+    );
     auto displayOutput = std::make_unique<DisplayOutput>();
     auto loggerOutput = std::make_unique<LoggerOutput>();
 

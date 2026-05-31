@@ -1,6 +1,11 @@
 #include "yolo_processor.h"
 
-YoloProcessor::YoloProcessor(const std::string& cfg, const std::string& weights, const std::string& names) {
+YoloProcessor::YoloProcessor(const std::string& cfg
+                            , const std::string& weights
+                            , const std::string& names
+                            , std::shared_ptr<MqttPublisher> publisher) 
+                            : m_counter(m_crossLineY, publisher)
+{
     m_net = cv::dnn::readNetFromDarknet(cfg, weights);
     m_net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
     m_net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
